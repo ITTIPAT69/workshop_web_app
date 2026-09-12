@@ -1,9 +1,14 @@
+using TodoApi.Dtos;
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -25,9 +30,8 @@ app.MapGet("/api/todos/{id}", (int id) =>
 {
     var todo = todos.FirstOrDefault(x => x.Id == id);
 
-    return todo;
+    return todo ;
 });
 
 app.Run();
 
-public record TodoGetDto(int Id, string Name, bool IsComplete);
